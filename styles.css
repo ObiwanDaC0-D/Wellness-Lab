@@ -13,3 +13,23 @@
 
 /* Compact corner chevron accordion in Theories */
 .theory-card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.theory-toggle{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:10px;background:var(--surface2);color:var(--teal);font-size:25px;line-height:1;cursor:pointer}.theory-toggle:hover,.theory-toggle:focus-visible{outline:2px solid var(--teal);outline-offset:2px}.theory-card [hidden]{display:none!important}.theory-card .detail{margin-top:16px}.theory-card .detail-heading .btn{display:none}
+
+/* Refined theory reading experience */
+.theory-grid{grid-template-columns:minmax(0,1fr);gap:12px;max-width:960px}
+.theory-card{padding:18px 22px;transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease}
+.theory-card.is-open{border-color:#5a9eaa;background:#162b45;box-shadow:0 12px 36px rgba(0,0,0,.14)}
+.theory-card-top{margin-bottom:8px}
+.theory-card h3{font-size:19px;line-height:1.35;margin:0 0 4px}
+.theory-card>p{max-width:80ch;margin:0}
+.theory-toggle{flex:none;width:44px;height:44px;margin:0!important;transition:background-color .2s ease,color .2s ease,transform .2s ease}
+.theory-toggle svg{transition:transform .24s ease}
+.theory-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.theory-card .detail{margin-top:18px;padding:20px;background:rgba(7,19,36,.35);border-color:#38556d;animation:theory-reveal .24s ease-out both}
+.theory-card .detail h2{font-size:22px}
+.theory-card .detail p{color:var(--ink)}
+.theory-card .detail .muted{color:var(--muted)}
+.theory-card .detail section{margin-top:16px}
+.theory-card .detail .toolbar{margin-top:18px}
+@keyframes theory-reveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.theory-card{padding:16px}.theory-card .detail{padding:16px}.theory-toggle{width:44px;height:44px}}
+@media(prefers-reduced-motion:reduce){.theory-card,.theory-toggle,.theory-toggle svg{transition:none}.theory-card .detail{animation:none}}
