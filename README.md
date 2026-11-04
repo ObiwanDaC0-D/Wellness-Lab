@@ -1,3 +1,11 @@
+## Version 7: Reliability and Research Integrity
+
+- Shared publication and extraction validation (`src/validation.js`), including duplicate PMID removal, positive standard error checks, and sanitized workbench data structures.
+- Safer handling of stale PubMed search errors when overlapping requests are cancelled.
+- Improved responsive styling for research extraction forms, methods controls, and synthesis tables.
+- Automated Node regression tests in `tests/research.test.mjs` and a GitHub Actions workflow in `.github/workflows/tests.yml`. Run locally with `npm test` (Node 22 recommended).
+- This release does **not** include encrypted storage, offline synchronization, automatic appraisal, or a validated real-study meta-analysis workflow. Live browser and CI execution still require verification.
+
 # Wellness-Lab — The Science of Mind, Behavior & Human Flourishing
 
 A modular, dependency-free, browser-based educational platform inspired by the architecture and learning experience of [Mind Explorer 4.0](https://github.com/ObiwanDaC0-D/Budhism-Psychology).
