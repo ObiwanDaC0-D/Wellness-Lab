@@ -1,3 +1,4 @@
+import {additionalItems} from './additional-data.js';
 // Editorial content is illustrative educational synthesis, not a clinical recommendation.
 // Evidence labels are qualitative context, never numeric ratings.
 export const domains=["Foundations","Therapies","Cognition","Emotion","Trauma","Neuroscience","Flourishing","Methods"];
@@ -25,6 +26,7 @@ export const items=[
 ["rct","Randomized controlled trials","Methods","Studies that randomly allocate participants to interventions.","Randomization reduces some selection confounding.","Well-conducted RCTs inform causal inference about interventions.","Bias, attrition, small samples and external validity still matter.","","meta"],
 ["meta","Systematic reviews and meta-analysis","Methods","Structured evidence synthesis across studies.","Transparent searches, risk-of-bias assessment and statistical pooling when appropriate.","Can provide strong evidence when underlying studies and methods are sound.","Pooling biased or heterogeneous studies does not fix their weaknesses.","","rct"]
 ];
+items.push(...additionalItems);
 export const thinkers=[
 ["beck","Aaron Beck","Cognitive therapy and cognitive models of depression","cbt,reappraisal"],
 ["gross","James Gross","Process model of emotion regulation","reappraisal"],
@@ -45,6 +47,15 @@ export const thinkers=[
 ["kahneman","Daniel Kahneman","Judgment, decision-making and cognitive biases","attention"],
 ["neff","Kristin Neff","Self-compassion research","mindfulness"]
 ];
+thinkers.push(
+["ellis","Albert Ellis","Rational Emotive Behavior Therapy","rebt,cbt"],
+["bowlby","John Bowlby","Attachment theory","attachment"],
+["deci","Edward Deci and Richard Ryan","Self-determination theory","selfdetermination"],
+["ainsworth","Mary Ainsworth","Attachment research and the Strange Situation","attachment"],
+["tversky","Amos Tversky","Judgment and decision research","cognitive"],
+["frankl","Viktor Frankl","Existential meaning-centered psychotherapy","perma"],
+["csikszentmihalyi","Mihaly Csikszentmihalyi","Flow and optimal experience","perma"]
+);
 export const pathways=[
 ["Psychological Science","rct,meta,attention,memory"],
 ["Cognitive and Behavioral Therapies","cbt,reappraisal,activation,exposure"],
