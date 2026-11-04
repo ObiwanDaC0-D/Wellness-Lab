@@ -9,7 +9,7 @@ const pages=["Explore","Theories","Therapies","Thinkers","Learning Labs","Resear
 const key="wellness-lab-v1";
 let state;try{state=JSON.parse(localStorage.getItem(key))||{}}catch{state={}}
 state.bookmarks??=[];state.completed??=[];state.notes??={};state.reviews??={};
-let page="Explore",chosen=null,filter="",domain="All",compare=["cbt","act"],lab="Reappraisal",trial=0,answers={};
+let page=pages.includes(decodeURIComponent(location.hash.slice(1)))?decodeURIComponent(location.hash.slice(1)):"Explore",chosen=null,filter="",domain="All",compare=["cbt","act"],lab="Reappraisal",trial=0,answers={};
 const $=s=>document.querySelector(s), esc=s=>String(s??"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const save=()=>{try{localStorage.setItem(key,JSON.stringify(state))}catch{toast("Browser storage unavailable. Export a backup.")}};
 const toast=s=>{const e=$("#toast");e.textContent=s;e.style.display="block";setTimeout(()=>e.style.display="none",2600)};
@@ -37,7 +37,7 @@ function learning(){const done=state.completed.length;const due=items.filter(a=>
 function render(){document.title=page+" · Wellness-Lab";$("#nav").innerHTML=pages.map(p=>`<button data-action="goto:${esc(p)}" ${page===p?'aria-current="page"':""}>${esc(p)}</button>`).join("");$("#main").innerHTML=(page==="Explore"?explore():page==="Theories"||page==="Therapies"?library(page):page==="Thinkers"?thinkersView():page==="Learning Labs"?labs():page==="Research"?research():page==="Evidence Lab"?methodsMarkup():page==="Synthesis Studio"?synthesisMarkup():page==="Research Workbench"?workbenchMarkup():page==="Compare"?compareView():learning())+`<footer class="footer">Wellness-Lab · Educational content only. Not diagnosis, psychotherapy or medical advice. Research summaries are editorial and require independent verification.</footer>`;if(page==="Learning Labs")labUpdate();if(page==="Explore")graphRender();if(page==="Evidence Lab")methodsRender();if(page==="Synthesis Studio")synthesisRender();}
 function open(id){chosen=id;if(!byId[id])return;if(!["Explore","Theories","Therapies","Thinkers","My Learning"].includes(page))page="Explore";render();$("#detail")?.scrollIntoView({behavior:"auto",block:"start"})}
 document.addEventListener("click",async e=>{if(graphHandle(e)||researchClick(e)||methodsClick(e)||synthesisClick(e)||workbenchClick(e))return;const b=e.target.closest("[data-action]");if(!b)return;const [action,...rest]=b.dataset.action.split(":");const id=rest.join(":");
-if(action==="goto"){page=id;chosen=null;filter="";domain="All";render();window.scrollTo(0,0)}
+if(action==="goto"){page=id;history.replaceState(null,"","#"+encodeURIComponent(page));chosen=null;filter="";domain="All";render();window.scrollTo(0,0)}
 if(action==="open")open(id);
 if(action==="bookmark"){state.bookmarks=state.bookmarks.includes(id)?state.bookmarks.filter(x=>x!==id):[...state.bookmarks,id];save();render()}
 if(action==="complete"){if(!state.completed.includes(id))state.completed.push(id);save();toast("Lesson marked complete");render()}
