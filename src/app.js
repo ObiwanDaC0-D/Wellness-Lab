@@ -10,7 +10,7 @@ const pages=["Explore","Theories","Therapies","Thinkers","Learning Labs","Resear
 const key="wellness-lab-v1";
 let state;try{state=JSON.parse(localStorage.getItem(key))||{}}catch{state={}}
 state.bookmarks??=[];state.completed??=[];state.notes??={};state.reviews??={};
-let page=pages.includes(decodeURIComponent(location.hash.slice(1)))?decodeURIComponent(location.hash.slice(1)):"Explore",chosen=null,filter="",domain="All",compare=["cbt","act"],lab="Reappraisal",trial=0,answers={};
+let page="Explore",chosen=null,filter="",domain="All",compare=["cbt","act"],lab="Reappraisal",trial=0,answers={};
 const $=s=>document.querySelector(s), esc=s=>String(s??"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const save=()=>{try{localStorage.setItem(key,JSON.stringify(state))}catch{toast("Browser storage unavailable. Export a backup.")}};
 const toast=s=>{const e=$("#toast");e.textContent=s;e.style.display="block";setTimeout(()=>e.style.display="none",2600)};
@@ -61,4 +61,5 @@ document.addEventListener("change",e=>{if(e.target.id==="archive-import"){archiv
 document.addEventListener("submit",e=>{if(researchSubmit(e))return;if(e.target.id==="pubmed-form"){e.preventDefault();const q=$("#pubmed-query").value.trim();if(q)window.open("https://pubmed.ncbi.nlm.nih.gov/?term="+encodeURIComponent(q),"_blank","noopener,noreferrer")}});
 const syncPageFromUrl=()=>{const next=decodeURIComponent(location.hash.slice(1));if(pages.includes(next)&&next!==page){page=next;render();$("#main").focus();}};window.addEventListener("hashchange",syncPageFromUrl);window.addEventListener("popstate",syncPageFromUrl);
 document.addEventListener("keydown",e=>graphKey(e));
+if(location.hash!=="#Explore")history.replaceState(null,"","#Explore");
 render();
