@@ -2,6 +2,14 @@
 
 A modular, dependency-free, browser-based educational platform inspired by the architecture and learning experience of [Mind Explorer 4.0](https://github.com/ObiwanDaC0-D/Budhism-Psychology).
 
+## Version 2: Mechanism-Centered Atlas
+- Interactive SVG network with keyboard-accessible nodes and clickable concept relationships.
+- Hierarchy and historical-overview timeline modes; filters for domains, thinkers and text.
+- Expanded content library (43 entries) and thinkers directory (25 entries).
+- Connected concept detail panels and integration with existing lessons and bookmarks.
+- The historical timeline is an editorial overview, **not** a dated empirical publication dataset.
+- Network layout is deterministic and optimized for a bounded neighborhood of up to 42 nodes; it is not a force-directed map of all psychological knowledge.
+
 ## Current implementation
 - Midnight-blue responsive interface with eight destinations.
 - Mechanism-centered linked concept explorer; 22 editorial concept summaries, including evidence context and limitations.
@@ -21,7 +29,8 @@ Visit http://localhost:8000. Deploy from repository root through GitHub Pages (S
 ## Architecture
 - `index.html`: semantic application shell
 - `styles.css`: responsive design and reduced-motion accommodations
-- `src/data.js`: editorial concept, researcher, pathway and research-link data
+- `src/data.js`, `src/additional-data.js`: editorial concept, researcher, pathway and research-link data
+- `src/graph.js`: SVG graph, hierarchy, timeline, filtering and node interactions
 - `src/app.js`: navigation, learning interactions, browser persistence and labs
 
 ## Scientific integrity
