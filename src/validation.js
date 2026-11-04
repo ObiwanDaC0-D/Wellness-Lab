@@ -1,0 +1,10 @@
+// Pure, dependency-free research data validation utilities.
+export const PAPER_KEY='wellness-lab-papers-v3';
+export const WORK_KEY='wellness-lab-workbench-v6';
+export const FIELDS=['design','population','comparator','outcome','effect','se','bias','notes'];
+export const validPMID=id=>/^\d{1,12}$/.test(String(id??''));
+export function validatePaper(p){return !!p&&typeof p==='object'&&validPMID(p.id)&&typeof p.title==='string'&&p.title.length<=2000;}
+export function cleanPapers(input){if(!Array.isArray(input))return [];const seen=new Set();return input.filter(p=>{if(!validatePaper(p)||seen.has(String(p.id)))return false;seen.add(String(p.id));return true;}).slice(0,500).map(p=>({id:String(p.id),title:p.title,authors:String(p.authors||'').slice(0,1000),journal:String(p.journal||'').slice(0,500),date:String(p.date||'').slice(0,100)}));}
+export function validateExtraction(record){const issues=[];if(!record||typeof record!=='object')return ['Extraction must be an object'];const effect=String(record.effect??'').trim(),se=String(record.se??'').trim();if(effect!==''&&!Number.isFinite(Number(effect)))issues.push('Effect estimate must be numeric');if(se!==''&&(!Number.isFinite(Number(se))||Number(se)<=0))issues.push('Standard error must be greater than zero');if((effect==='')!==(se===''))issues.push('Effect and standard error should both be entered for quantitative synthesis');return issues;}
+export function cleanWork(input){const value=input&&typeof input==='object'?input:{};const records={};for(const [id,raw] of Object.entries(value.records&&typeof value.records==='object'?value.records:{})){if(!validPMID(id)||!raw||typeof raw!=='object')continue;records[id]={};for(const key of FIELDS)if(raw[key]!==undefined)records[id][key]=String(raw[key]).slice(0,5000);}return {question:String(value.question||'').slice(0,500),records};}
+export function eligibleForSynthesis(record){return validateExtraction(record).length===0&&String(record.effect??'').trim()!==''&&String(record.se??'').trim()!=='';}
