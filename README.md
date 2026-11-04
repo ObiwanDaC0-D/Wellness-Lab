@@ -1,3 +1,10 @@
+## Version 8: Navigation and Research Reliability
+
+- Section URLs now use encoded hash fragments, allowing bookmarking and browser back/forward navigation.
+- PubMed Research Explorer initializes its search field and discards stale results from superseded requests.
+- Static application smoke tests (`tests/smoke.test.mjs`) supplement the V7 validation tests. Run with `npm test`.
+- Browser interaction, accessibility and GitHub Pages deployment are **not yet independently verified**. No claim of production readiness is made.
+
 ## Version 7: Reliability and Research Integrity
 
 - Shared publication and extraction validation (`src/validation.js`), including duplicate PMID removal, positive standard error checks, and sanitized workbench data structures.
