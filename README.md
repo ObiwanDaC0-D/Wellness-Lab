@@ -1,3 +1,11 @@
+# Wellness Lab
+
+Wellness Lab is a modular learning environment for exploring how people think, feel, learn, and change. It organizes major psychological and therapeutic approaches alongside cognitive-science concepts, educational activities, and research exploration tools. Its research features support critical inquiry, not clinical diagnosis or personalized treatment.
+
+**At a glance:** An interactive learning and research platform for psychology, psychotherapy, cognitive science, neuroscience, mental health, and human flourishing, with theory exploration and research tools.
+
+---
+
 ## Version 8: Navigation and Research Reliability
 
 - Section URLs now use encoded hash fragments, allowing bookmarking and browser back/forward navigation.
